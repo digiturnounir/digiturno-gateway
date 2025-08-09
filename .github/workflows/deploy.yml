@@ -1,0 +1,24 @@
+name: CI/CD Deploy Gateway Service (Direct Build on AWS)
+
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to AWS EC2 via SSH (git pull & docker-compose)
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          port: 22
+          script: |
+            cd /home/ec2-user/digiturno/back-end-cloud-gateway-filters
+            git pull origin main
+            cd /home/ec2-user/digiturno
+            docker-compose down
+            docker-compose up -d --build gateway
