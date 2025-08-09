@@ -20,5 +20,5 @@ jobs:
             cd /home/ec2-user/digiturno/digiturno-gateway
             git pull origin main
             cd /home/ec2-user/digiturno
-            docker-compose down
+            docker-compose stop gateway
             docker-compose up -d --build gateway
