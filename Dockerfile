@@ -12,6 +12,6 @@ COPY --from=build /app/Wallet_DIGITURNO ./Wallet_DIGITURNO
 RUN addgroup -g 1001 -S spring && adduser -u 1001 -S spring -G spring
 USER spring:spring
 
-EXPOSE 8081
+EXPOSE 8080
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
