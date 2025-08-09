@@ -17,7 +17,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           port: 22
           script: |
-            cd /home/ec2-user/digiturno/back-end-cloud-gateway-filters
+            cd /home/ec2-user/digiturno/digiturno-gateway
             git pull origin main
             cd /home/ec2-user/digiturno
             docker-compose down
